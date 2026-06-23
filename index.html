@@ -8,7 +8,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -45,8 +44,7 @@ border-radius:25px;
 background:rgba(0,0,0,.55);
 backdrop-filter:blur(15px);
 border:1px solid rgba(255,255,255,.15);
-box-shadow:
-0 0 30px rgba(255,255,255,.08);
+box-shadow:0 0 30px rgba(255,255,255,.08);
 }
 
 .logo{
@@ -54,7 +52,7 @@ font-size:38px;
 font-weight:900;
 text-align:center;
 letter-spacing:3px;
-color:#ffffff;
+color:#fff;
 text-shadow:
 0 0 10px rgba(255,255,255,.8),
 0 0 20px rgba(255,255,255,.4);
@@ -80,10 +78,6 @@ color:white;
 font-size:15px;
 outline:none;
 transition:.3s;
-}
-
-input::placeholder{
-color:#bdbdbd;
 }
 
 input:focus{
@@ -117,6 +111,7 @@ margin-top:15px;
 text-align:center;
 color:white;
 font-size:14px;
+min-height:20px;
 }
 
 .buy-access{
@@ -131,7 +126,6 @@ text-align:center;
 font-weight:800;
 letter-spacing:2px;
 color:white;
-text-shadow:0 0 10px rgba(255,255,255,.5);
 }
 
 .buy-btn{
@@ -141,30 +135,15 @@ text-align:center;
 padding:14px;
 border-radius:12px;
 font-weight:700;
-transition:.3s;
 color:white;
-}
-
-.buy-btn:hover{
-transform:translateY(-2px);
 }
 
 .whatsapp-btn{
 background:#25D366;
-border:1px solid #25D366;
-}
-
-.whatsapp-btn:hover{
-box-shadow:0 0 20px rgba(37,211,102,.45);
 }
 
 .telegram-btn{
 background:#229ED9;
-border:1px solid #229ED9;
-}
-
-.telegram-btn:hover{
-box-shadow:0 0 20px rgba(34,158,217,.45);
 }
 
 .footer{
@@ -173,136 +152,81 @@ text-align:center;
 font-size:12px;
 color:#c0c0c0;
 }
-
 </style>
 </head>
 <body>
 
 <div class="login-box">
 
-<div class="logo">𝖂𝕰𝕭 𝕭𝕬𝕹𝕯</div>
+<div class="logo">𝖂𝕰𝕭 𝕭𝕬𝕹𝕹𝕰𝕯</div>
 
-<div class="subtitle">
-разрушитель высокомерия
-</div>
+<div class="subtitle">разрушитель высокомерия</div>
 
-<input
-type="email"
-id="email"
-placeholder="Email">
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Password">
 
-<input
-type="password"
-id="password"
-placeholder="Password">
-
-<button
-class="login-btn"
-onclick="login()">
-LOGIN
-</button>
+<button class="login-btn" onclick="login()">LOGIN</button>
 
 <div id="msg"></div>
 
 <div class="buy-access">
+<div class="buy-title">BUY ACCESS</div>
 
-<div class="buy-title">
-BUY ACCESS
+<a class="buy-btn whatsapp-btn" href="https://wa.me/628212165939?text=buy+access+bang" target="_blank">BUY VIA WHATSAPP</a>
+<a class="buy-btn whatsapp-btn" href="https://wa.me/628132086884?text=buy+access+bang" target="_blank">BUY VIA WHATSAPP</a>
+<a class="buy-btn telegram-btn" href="https://t.me/xpresspl" target="_blank">BUY VIA TELEGRAM</a>
 </div>
 
-<a
-class="buy-btn whatsapp-btn"
-href="https://wa.me/628212165939?text=buy+access+bang"
-target="_blank">
-BUY ACCESS VIA WHATSAPP
-</a>
-
-<a
-class="buy-btn whatsapp-btn"
-href="https://wa.me/628132086884?text=buy+access+bang"
-target="_blank">
-BUY ACCESS VIA WHATSAPP
-</a>
-
-<a
-class="buy-btn telegram-btn"
-href="https://t.me/xpresspl"
-target="_blank">
-BUY ACCESS VIA TELEGRAM
-</a>
-
-</div>
-
-<div class="footer">
-© 2018 - 2026 FROM VANO COMMUNITY
-</div>
+<div class="footer">© 2018 - 2026 FROM VANO COMMUNITY</div>
 
 </div>
 
 <script>
 
-const supabase = window.supabase.createClient(
-'https://zqqndwdmvhiwpflhpcab.supabase.co',
-'sb_publishable_7uGpjDAnlCcqI3VD0QhEDg_y4caw2Bk'
-);
+const SUPABASE_URL = "https://zqqndwdmvhiwpflhpcab.supabase.co";
+const SUPABASE_KEY = "sb_publishable_8ridtSIbc2cYBJe3m0vZ9g_9A73K-ZC";
 
-const msg = document.getElementById('msg');
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const msg = document.getElementById("msg");
 
 async function login(){
 
-const email =
-document.getElementById('email').value.trim();
-
-const password =
-document.getElementById('password').value.trim();
+const email = document.getElementById("email").value.trim();
+const password = document.getElementById("password").value.trim();
 
 if(!email || !password){
-
-msg.innerHTML =
-"Masukkan email dan password";
-
+msg.innerHTML = "Masukkan email dan password";
 return;
-
 }
 
-const { error } =
-await supabase.auth.signInWithPassword({
+msg.innerHTML = "Memproses login...";
 
+const { error } = await supabase.auth.signInWithPassword({
 email,
 password
-
 });
 
 if(error){
+msg.innerHTML = error.message;
+return;
+}
 
-msg.innerHTML =
-"Email atau password salah";
+msg.innerHTML = "Login berhasil";
 
-}else{
-
-window.location.href =
-"dashboard.html";
+setTimeout(()=>{
+window.location.href = "dashboard.html";
+}, 1200);
 
 }
 
-}
-
-(async()=>{
-
-const {
-data:{session}
-}
-=
-await supabase.auth.getSession();
+window.addEventListener("load", async () => {
+const { data: { session } } = await supabase.auth.getSession();
 
 if(session){
-
-window.location.href =
-"dashboard.html";
-
+window.location.href = "dashboard.html";
 }
-
-})();
+});
 
 </script>
 
