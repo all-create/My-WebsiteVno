@@ -1,411 +1,359 @@
-<!DOCTYPE html>  
-<html lang="id">  
-<head>  
-<meta charset="UTF-8">  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<title>WEB BANNED DASHBOARD</title>  
-  
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  
-  
-<style>  
-*{  
-margin:0;  
-padding:0;  
-box-sizing:border-box;  
-font-family:Georgia,serif;  
-}  
-  
-body{  
-background:url('background.jpg') center center/cover fixed;  
-min-height:100vh;  
-color:white;  
-}  
-  
-.overlay{  
-position:fixed;  
-inset:0;  
-background:rgba(0,0,0,.85);  
-backdrop-filter:blur(4px);  
-z-index:-1;  
-}  
-  
-.header{  
-display:flex;  
-justify-content:space-between;  
-align-items:center;  
-padding:20px;  
-background:rgba(0,0,0,.45);  
-border-bottom:1px solid rgba(255,255,255,.08);  
-backdrop-filter:blur(15px);  
-}  
-  
-.logo{  
-font-size:26px;  
-font-weight:bold;  
-letter-spacing:3px;  
-}  
-  
-.status{  
-color:#aaa;  
-font-size:14px;  
-}  
-  
-.container{  
-max-width:1200px;  
-margin:auto;  
-padding:25px;  
-}  
-  
-.welcome{  
-background:rgba(255,255,255,.05);  
-border:1px solid rgba(255,255,255,.08);  
-padding:30px;  
-border-radius:20px;  
-backdrop-filter:blur(15px);  
-margin-bottom:25px;  
-}  
-  
-.welcome h1{  
-font-size:35px;  
-margin-bottom:10px;  
-}  
-  
-.welcome p{  
-color:#aaa;  
-}  
-  
-.grid{  
-display:grid;  
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));  
-gap:20px;  
-margin-bottom:30px;  
-}  
-  
-.card{  
-background:rgba(255,255,255,.05);  
-border:1px solid rgba(255,255,255,.08);  
-padding:25px;  
-border-radius:18px;  
-backdrop-filter:blur(15px);  
-}  
-  
-.card h3{  
-margin-bottom:10px;  
-}  
-  
-.card p{  
-color:#aaa;  
-}  
-  
-.download-title{  
-text-align:center;  
-font-size:30px;  
-margin-top:30px;  
-margin-bottom:20px;  
-}  
-  
-.menu-method{  
-display:grid;  
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));  
-gap:15px;  
-margin-bottom:30px;  
-}  
-  
-.method-btn{  
-padding:15px;  
-border:none;  
-border-radius:14px;  
-background:white;  
-color:black;  
-font-weight:bold;  
-cursor:pointer;  
-}  
-  
-.download-grid{  
-display:grid;  
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));  
-gap:20px;  
-}  
-  
-.download-card{  
-background:rgba(255,255,255,.05);  
-border:1px solid rgba(255,255,255,.08);  
-padding:25px;  
-border-radius:18px;  
-backdrop-filter:blur(15px);  
-text-align:center;  
-}  
-  
-.download-card h3{  
-margin-bottom:10px;  
-}  
-  
-.download-card p{  
-color:#aaa;  
-margin-bottom:15px;  
-}  
-  
-.download-btn{  
-display:block;  
-text-decoration:none;  
-padding:14px;  
-border-radius:12px;  
-background:white;  
-color:black;  
-font-weight:bold;  
-}  
-  
-.menu{  
-margin-top:30px;  
-display:grid;  
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));  
-gap:15px;  
-}  
-  
-.btn{  
-display:block;  
-text-decoration:none;  
-text-align:center;  
-padding:15px;  
-border-radius:14px;  
-font-weight:bold;  
-color:white;  
-}  
-  
-.telegram{background:#229ED9;}  
-.whatsapp{background:#25D366;}  
-.logout{background:#8B0000;}  
-  
-.footer{  
-text-align:center;  
-padding:30px;  
-color:#666;  
-font-size:13px;  
-}  
-  
-.popup{  
-display:none;  
-position:fixed;  
-top:0;  
-left:0;  
-width:100%;  
-height:100%;  
-background:rgba(0,0,0,.85);  
-justify-content:center;  
-align-items:center;  
-z-index:9999;  
-padding:20px;  
-}  
-  
-.popup-content{  
-width:100%;  
-max-width:600px;  
-background:#1b1b1b;  
-padding:25px;  
-border-radius:20px;  
-border:1px solid rgba(255,255,255,.1);  
-position:relative;  
-}  
-  
-.close-btn{  
-position:absolute;  
-top:10px;  
-right:15px;  
-font-size:24px;  
-cursor:pointer;  
-}  
-  
-.popup-content h3{  
-margin-bottom:15px;  
-}  
-  
-.popup-content p{  
-color:#aaa;  
-line-height:1.7;  
-white-space:pre-wrap;  
-}  
-</style>  
-</head>  
-<body>  
-  
-<div class="overlay"></div>  
-  
-<div class="header">  
-<div class="logo">WEB BANNED</div>  
-<div class="status" id="userEmail">Проверка...</div>  
-</div>  
-  
-<div class="container">  
-  
-<div class="welcome">  
-<h1>ДОБРО ПОЖАЛОВАТЬ НА WEB BANNED</h1>  
-<p>MY CREATOR IS PART OF COMMUNITY 577 CYBER DIVISION</p>  
-</div>  
-  
-<div class="grid">  
-  
-<div class="card">  
-<h3>ANNOUNCEMENT</h3>  
-<p>don't misuse it just for personal interests</p>  
-</div>  
-  
-<div class="card">  
-<h3>COMMUNITY</h3>  
-<p>577 DEVISI CYBER</p>  
-</div>  
-  
-</div>  
-  
-<h2 class="download-title">MT BANNED TEXT</h2>  
-  
-<div class="menu-method">  
-<button onclick="showText('t1')" class="method-btn">MT ONE_RAP1</button>  
-<button onclick="showText('t2')" class="method-btn">MT ONE_RAP2</button>  
-<button onclick="showText('t3')" class="method-btn">MT NEW_OKEP</button>  
-<button onclick="showText('t4')" class="method-btn">MT VIA GMAIL</button>  
-<button onclick="showText('t5')" class="method-btn">MT SLOT MAKLU</button>  
-</div>  
-  
-<h2 class="download-title">запрещенный метод через видео</h2>  
-  
-<div class="download-grid">  
-  
-<div class="download-card">  
-<h3>MT VID GALAU</h3>  
-<p>Metode Bisa PM / PV</p>  
-<a href="https://www.mediafire.com/file/elkvf7nedhtrmyh/VID-20260605-WA0036.mp4/file" target="_blank" class="download-btn">DOWNLOAD</a>  
-</div>  
-  
-<div class="download-card">  
-<h3>MT VID TOBRUT</h3>  
-<p>Metode Bisa PM / PV</p>  
-<a href="https://www.mediafire.com/file/m90bpnommi109k6/VID_20260623_085835_105.mp4/file" target="_blank" class="download-btn">DOWNLOAD</a>  
-</div>  
-  
-<div class="download-card">  
-<h3>MT VID ANIME</h3>  
-<p>Metode Bisa PM / PV</p>  
-<a href="https://www.mediafire.com/file/h0nb7746b3w577z/VID_20260623_085247_437.mp4/file" target="_blank" class="download-btn">DOWNLOAD</a>  
-</div>  
-  
-<div class="download-card">  
-<h3>WHATSAPP FC</h3>  
-<p>Metode Bisa PM / PV</p>  
-<a href="https://www.mediafire.com/file/og02gq13m7bb9mo/MAR5WhatsApp_2.26.7.74.apk/file" target="_blank" class="download-btn">DOWNLOAD</a>  
-</div>  
-  
-<div class="download-card">  
-<h3>APK CEK BAND</h3>  
-<p>проверка</p>  
-<a href="https://www.mediafire.com/file/eatpz2xwjhl3r6n/𖤐+تحقق+من+فرقة+تريبل+𖤐.apk/file" target="_blank" class="download-btn">DOWNLOAD</a>  
-</div>  
-  
-</div>  
-  
-<div class="menu">  
-  
-<a href="https://t.me/xpresspl" target="_blank" class="btn telegram">  
-TELEGRAM  
-</a>  
-  
-<a href="https://wa.me/628212165939" target="_blank" class="btn whatsapp">  
-WHATSAPP  
-</a>  
-  
-<a href="#" onclick="logout();return false;" class="btn logout">  
-LOGOUT  
-</a>  
-  
-</div>  
-  
-</div>  
-  
-<div class="footer">  
-© 2018 - 2026 BY VANO COMMUNITY  
-</div>  
-  
-<div id="popup" class="popup">  
-<div class="popup-content">  
-<span class="close-btn" onclick="closePopup()">✕</span>  
-<h3 id="popupTitle"></h3>  
-<p id="popupText"></p>  
-</div>  
-</div>  
-  
-<script>  
-const supabase = window.supabase.createClient(  
-'https://zqqndwdmvhiwpflhpcab.supabase.co',  
-'sb_publishable_7uGpjDAnlCcqI3VD0QhEDg_y4caw2Bk'  
-);  
-  
-async function checkSession(){  
-  
-const { data:{session} } = await supabase.auth.getSession();  
-  
-if(!session){  
-window.location.href="index.html";  
-return;  
-}  
-  
-document.getElementById("userEmail").innerText =  
-session.user.email;  
-}  
-  
-checkSession();  
-  
-const methods = {  
-  
-t1:{  
-title:"SOURCE MT",  
-text:`UNTUK PENGAMBILAN MT TEXT DI : https://t.me/methodeebanned`  
-},  
-  
-t2:{  
-title:"SOURCE MT",  
-text:`UNTUK PENGAMBILAN MT TEXT DI : https://t.me/methodeebanned`  
-},  
-  
-t3:{  
-title:"SOURCE MT",  
-text:`UNTUK PENGAMBILAN MT TEXT DI : https://t.me/methodeebanned`  
-},  
-  
-t4:{  
-title:"SOURCE MT",  
-text:`UNTUK PENGAMBILAN MT TEXT DI : https://t.me/methodeebanned`  
-},  
-  
-t5:{  
-title:"SOURCE MT",  
-text:`UNTUK PENGAMBILAN MT TEXT DI : https://t.me/methodeebanned`  
-}  
-  
-};  
-  
-function showText(id){  
-  
-document.getElementById("popupTitle").innerText =  
-methods[id].title;  
-  
-document.getElementById("popupText").innerText =  
-methods[id].text;  
-  
-document.getElementById("popup").style.display =  
-"flex";  
-}  
-  
-function closePopup(){  
-document.getElementById("popup").style.display =  
-"none";  
-}  
-  
-async function logout(){  
-  
-await supabase.auth.signOut();  
-  
-window.location.href="index.html";  
-}  
-</script>  
-  
-</body>  
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WEB BANNED DASHBOARD</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Georgia,serif;
+}
+
+body{
+background:url('background.jpg') center center/cover fixed;
+min-height:100vh;
+color:white;
+}
+
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.85);
+backdrop-filter:blur(4px);
+z-index:-1;
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+background:rgba(0,0,0,.45);
+border-bottom:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+}
+
+.logo{
+font-size:26px;
+font-weight:bold;
+letter-spacing:3px;
+}
+
+.status{
+color:#aaa;
+font-size:14px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:25px;
+}
+
+.welcome{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+padding:30px;
+border-radius:20px;
+backdrop-filter:blur(15px);
+margin-bottom:25px;
+}
+
+.welcome h1{
+font-size:35px;
+margin-bottom:10px;
+}
+
+.welcome p{
+color:#aaa;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-bottom:30px;
+}
+
+.card{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+padding:25px;
+border-radius:18px;
+backdrop-filter:blur(15px);
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.card p{
+color:#aaa;
+}
+
+.download-title{
+text-align:center;
+font-size:30px;
+margin-top:30px;
+margin-bottom:20px;
+}
+
+.menu-method{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-bottom:30px;
+}
+
+.method-btn{
+padding:15px;
+border:none;
+border-radius:14px;
+background:white;
+color:black;
+font-weight:bold;
+cursor:pointer;
+}
+
+.download-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.download-card{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+padding:25px;
+border-radius:18px;
+backdrop-filter:blur(15px);
+text-align:center;
+}
+
+.download-card h3{
+margin-bottom:10px;
+}
+
+.download-card p{
+color:#aaa;
+margin-bottom:15px;
+}
+
+.download-btn{
+display:block;
+text-decoration:none;
+padding:14px;
+border-radius:12px;
+background:white;
+color:black;
+font-weight:bold;
+}
+
+.menu{
+margin-top:30px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+}
+
+.btn{
+display:block;
+text-decoration:none;
+text-align:center;
+padding:15px;
+border-radius:14px;
+font-weight:bold;
+color:white;
+}
+
+.telegram{background:#229ED9;}
+.whatsapp{background:#25D366;}
+.logout{background:#8B0000;}
+
+.footer{
+text-align:center;
+padding:30px;
+color:#666;
+font-size:13px;
+}
+
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.85);
+justify-content:center;
+align-items:center;
+z-index:9999;
+padding:20px;
+}
+
+.popup-content{
+width:100%;
+max-width:600px;
+background:#1b1b1b;
+padding:25px;
+border-radius:20px;
+border:1px solid rgba(255,255,255,.1);
+position:relative;
+}
+
+.close-btn{
+position:absolute;
+top:10px;
+right:15px;
+font-size:24px;
+cursor:pointer;
+}
+
+.popup-content h3{
+margin-bottom:15px;
+}
+
+.popup-content p{
+color:#aaa;
+line-height:1.7;
+white-space:pre-wrap;
+}
+</style>
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<div class="header">
+<div class="logo">WEB BANNED</div>
+<div class="status" id="userEmail">Проверка...</div>
+</div>
+
+<div class="container">
+
+<div class="welcome">
+<h1>ДОБРО ПОЖАЛОВАТЬ НА WEB BANNED</h1>
+<p>MY CREATOR IS PART OF COMMUNITY 577 CYBER DIVISION</p>
+</div>
+
+<div class="grid">
+<div class="card">
+<h3>ANNOUNCEMENT</h3>
+<p>don't misuse it just for personal interests</p>
+</div>
+
+<div class="card">
+<h3>COMMUNITY</h3>
+<p>577 DEVISI CYBER</p>
+</div>
+</div>
+
+<h2 class="download-title">MT BANNED TEXT</h2>
+
+<div class="menu-method">
+<button onclick="showText('t1')" class="method-btn">MT ONE_RAP1</button>
+<button onclick="showText('t2')" class="method-btn">MT ONE_RAP2</button>
+<button onclick="showText('t3')" class="method-btn">MT NEW_OKEP</button>
+<button onclick="showText('t4')" class="method-btn">MT VIA GMAIL</button>
+<button onclick="showText('t5')" class="method-btn">MT SLOT MAKLU</button>
+</div>
+
+<h2 class="download-title">запрещенный метод через видео</h2>
+
+<div class="download-grid">
+<div class="download-card">
+<h3>MT VID GALAU</h3>
+<p>Metode Bisa PM / PV</p>
+<a href="https://www.mediafire.com/file/elkvf7nedhtrmyh/VID-20260605-WA0036.mp4/file" class="download-btn" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="download-card">
+<h3>MT VID TOBRUT</h3>
+<p>Metode Bisa PM / PV</p>
+<a href="https://www.mediafire.com/file/m90bpnommi109k6/VID_20260623_085835_105.mp4/file" class="download-btn" target="_blank">DOWNLOAD</a>
+</div>
+</div>
+
+<div class="menu">
+
+<a href="https://t.me/xpresspl" class="btn telegram" target="_blank">TELEGRAM</a>
+<a href="https://wa.me/628212165939" class="btn whatsapp" target="_blank">WHATSAPP</a>
+<a href="#" onclick="logout();return false;" class="btn logout">LOGOUT</a>
+
+</div>
+
+</div>
+
+<div class="footer">© 2018 - 2026 BY VANO COMMUNITY</div>
+
+<div id="popup" class="popup">
+<div class="popup-content">
+<span class="close-btn" onclick="closePopup()">✕</span>
+<h3 id="popupTitle"></h3>
+<p id="popupText"></p>
+</div>
+</div>
+
+<script>
+
+const SUPABASE_URL = "https://zqqndwdmvhiwpflhpcab.supabase.co";
+const SUPABASE_KEY = "sb_publishable_8ridtSIbc2cYBJe3m0vZ9g_9A73K-ZC";
+
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// SESSION CHECK (FIXED FOR VERCEL)
+window.addEventListener("load", async () => {
+
+const { data: { session } } = await supabase.auth.getSession();
+
+if(!session){
+setTimeout(()=>{
+window.location.href = "index.html";
+},800);
+return;
+}
+
+document.getElementById("userEmail").innerText = session.user.email;
+
+});
+
+// AUTH LISTENER (ANTI BUG LOGOUT)
+supabase.auth.onAuthStateChange((event, session) => {
+if(!session){
+window.location.href = "index.html";
+}
+});
+
+const methods = {
+t1:{title:"SOURCE MT", text:"UNTUK PENGAMBILAN MT TEXT DI : https://t.me/methodeebanned"},
+t2:{title:"SOURCE MT", text:"UNTUK PENGAMBILAN MT TEXT DI : https://t.me/methodeebanned"},
+t3:{title:"SOURCE MT", text:"UNTUK PENGAMBILAN MT TEXT DI : https://t.me/methodeebanned"},
+t4:{title:"SOURCE MT", text:"UNTUK PENGAMBILAN MT TEXT DI : https://t.me/methodeebanned"},
+t5:{title:"SOURCE MT", text:"UNTUK PENGAMBILAN MT TEXT DI : https://t.me/methodeebanned"}
+};
+
+function showText(id){
+document.getElementById("popupTitle").innerText = methods[id].title;
+document.getElementById("popupText").innerText = methods[id].text;
+document.getElementById("popup").style.display = "flex";
+}
+
+function closePopup(){
+document.getElementById("popup").style.display = "none";
+}
+
+async function logout(){
+await supabase.auth.signOut();
+window.location.href = "index.html";
+}
+
+</script>
+
+</body>
 </html>
