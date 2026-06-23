@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WEB BANNED DASHBOARD</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Georgia,serif;
+}
+
+body{
+background:url('background.jpg') center center/cover fixed;
+min-height:100vh;
+color:white;
+}
+
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.85);
+backdrop-filter:blur(4px);
+z-index:-1;
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+background:rgba(0,0,0,.45);
+border-bottom:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+}
+
+.logo{
+font-size:26px;
+font-weight:bold;
+letter-spacing:3px;
+}
+
+.status{
+color:#aaa;
+font-size:14px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:25px;
+}
+
+.welcome{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+padding:30px;
+border-radius:20px;
+backdrop-filter:blur(15px);
+margin-bottom:25px;
+}
+
+.welcome h1{
+font-size:35px;
+margin-bottom:10px;
+}
+
+.welcome p{
+color:#aaa;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-bottom:30px;
+}
+
+.card{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+padding:25px;
+border-radius:18px;
+backdrop-filter:blur(15px);
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.card p{
+color:#aaa;
+}
+
+.download-title{
+text-align:center;
+font-size:30px;
+margin-top:30px;
+margin-bottom:20px;
+}
+
+.menu-method{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-bottom:30px;
+}
+
+.method-btn{
+padding:15px;
+border:none;
+border-radius:14px;
+background:white;
+color:black;
+font-weight:bold;
+cursor:pointer;
+}
+
+.download-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.download-card{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+padding:25px;
+border-radius:18px;
+backdrop-filter:blur(15px);
+text-align:center;
+}
+
+.download-card h3{
+margin-bottom:10px;
+}
+
+.download-card p{
+color:#aaa;
+margin-bottom:15px;
+}
+
+.download-btn{
+display:block;
+text-decoration:none;
+padding:14px;
+border-radius:12px;
+background:white;
+color:black;
+font-weight:bold;
+}
+
+.menu{
+margin-top:30px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+}
+
+.btn{
+display:block;
+text-decoration:none;
+text-align:center;
+padding:15px;
+border-radius:14px;
+font-weight:bold;
+color:white;
+}
+
+.telegram{
+background:#229ED9;
+}
+
+.whatsapp{
+background:#25D366;
+}
+
+.logout{
+background:#8B0000;
+}
+
+.footer{
+text-align:center;
+padding:30px;
+color:#666;
+font-size:13px;
+}
+
+/* POPUP */
+
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.85);
+justify-content:center;
+align-items:center;
+z-index:9999;
+padding:20px;
+}
+
+.popup-content{
+width:100%;
+max-width:600px;
+background:#1b1b1b;
+padding:25px;
+border-radius:20px;
+border:1px solid rgba(255,255,255,.1);
+position:relative;
+}
+
+.close-btn{
+position:absolute;
+top:10px;
+right:15px;
+font-size:24px;
+cursor:pointer;
+}
+
+.popup-content h3{
+margin-bottom:15px;
+}
+
+.popup-content p{
+color:#aaa;
+line-height:1.7;
+}
+
+</style>
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<script>
+if(localStorage.getItem("access") !== "true"){
+window.location.href="index.html";
+}
+</script>
+
+<div class="header">
+<div class="logo">WEB BANNED</div>
+<div class="status">Премиум доступ</div>
+</div>
+
+<div class="container">
+
+<div class="welcome">
+<h1>ДОБРО ПОЖАЛОВАТЬ НА WEB BANNED</h1>
+<p>MY CREATOR IS PART OF COMMUNITY 577 CYBER DIVISION</p>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>ANNOUNCEMENT</h3>
+<p>don't misuse it just for personal interests</p>
+</div>
+
+<div class="card">
+<h3>COMMUNITY</h3>
+<p>577 DEVISI CYBER</p>
+</div>
+
+</div>
+
+<h2 class="download-title">Method Banned Text</h2>
+
+<div class="menu-method">
+
+<button onclick="showText('t1')" class="method-btn">
+MT_NEW_OKEP
+</button>
+
+<button onclick="showText('t2')" class="method-btn">
+MT_ONE_RAP
+</button>
+
+<button onclick="showText('t3')" class="method-btn">
+MT_ONE_RAP2
+</button>
+
+<button onclick="showText('t4')" class="method-btn">
+MT_GMAIL
+</button>
+
+<button onclick="showText('t5')" class="method-btn">
+MT_SLOT
+</button>
+
+</div>
+
+<h2 class="download-title">
+запрещенный метод через видео
+</h2>
+
+<div class="download-grid">
+
+<div class="download-card">
+<h3>MT VID GALAU</h3>
+<p>Metode Bisa PM / PV</p>
+<a href="https://www.mediafire.com/file/elkvf7nedhtrmyh/VID-20260605-WA0036.mp4/file"
+target="_blank"
+class="download-btn">
+DOWNLOAD
+</a>
+</div>
+
+<div class="download-card">
+<h3>MT VID TOBRUT</h3>
+<p>Metode Bisa PM / PV</p>
+<a href="LINK_MEDIAFIRE_2"
+target="_blank"
+class="download-btn">
+DOWNLOAD
+</a>
+</div>
+
+<div class="download-card">
+<h3>MT VID ANIME</h3>
+<p>Metode Bisa PM / PV</p>
+<a href="LINK_MEDIAFIRE_3"
+target="_blank"
+class="download-btn">
+DOWNLOAD
+</a>
+</div>
+
+<div class="download-card">
+<h3>WHATSAPP FC</h3>
+<p>Metode Bisa PM / PV</p>
+<a href="LINK_MEDIAFIRE_4"
+target="_blank"
+class="download-btn">
+DOWNLOAD
+</a>
+</div>
+
+<div class="download-card">
+<h3>APK CEK BAND</h3>
+<p>проверка</p>
+<a href="LINK_MEDIAFIRE_5"
+target="_blank"
+class="download-btn">
+DOWNLOAD
+</a>
+</div>
+
+</div>
+
+<div class="menu">
+
+<a href="https://t.me/xpresspl"
+target="_blank"
+class="btn telegram">
+TELEGRAM
+</a>
+
+<a href="https://wa.me/628212165939"
+target="_blank"
+class="btn whatsapp">
+WHATSAPP
+</a>
+
+<a href="#"
+onclick="logout()"
+class="btn logout">
+LOGOUT
+</a>
+
+</div>
+
+</div>
+
+<div class="footer">
+© 2018 - 2026 BY VANO COMMUNITY
+</div>
+
+<div id="popup" class="popup">
+
+<div class="popup-content">
+
+<span class="close-btn" onclick="closePopup()">
+✕
+</span>
+
+<h3 id="popupTitle"></h3>
+
+<p id="popupText"></p>
+
+</div>
+
+</div>
+
+<script>
+
+const methods = {
+
+t1:{
+title:"MT_NEW_OKEP",
+text:"METHOD 1 SILAHKAN AMBIL DI https://t.me/methodeebanned"
+},
+
+t2:{
+title:"MT_ONE_RAP",
+text:"METHOD 2 SILAHKAN AMBIL DI https://t.me/methodeebanned"
+},
+
+t3:{
+title:"MT_ONE_RAP2",
+text:"METHOD 3 SILAHKAN AMBIL DI https://t.me/methodeebanned"
+},
+
+t4:{
+title:"MT_GMAIL",
+text:"METHOD 4 SILAHKAN AMBIL DI https://t.me/methodeebanned"
+},
+
+t5:{
+title:"MT_SLOT",
+text:"METHOD 5 SILAHKAN AMBIL DI https://t.me/methodeebanned"
+}
+
+};
+
+function showText(id){
+
+document.getElementById("popupTitle").innerText =
+methods[id].title;
+
+document.getElementById("popupText").innerText =
+methods[id].text;
+
+document.getElementById("popup").style.display =
+"flex";
+
+}
+
+function closePopup(){
+
+document.getElementById("popup").style.display =
+"none";
+
+}
+
+function logout(){
+localStorage.removeItem("access");
+window.location.href="index.html";
+}
+
+</script>
+
+</body>
+  </html>
