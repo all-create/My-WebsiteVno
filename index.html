@@ -3,67 +3,214 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>vano community</title>
+<title>WEB BANNED BY VANO COMMUNITY</title>
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Georgia,serif;
 }
 
 body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    font-family:Arial,sans-serif;
-
-    background:
-    linear-gradient(
-        rgba(0,0,0,0.55),
-        rgba(0,0,0,0.80)
-    ),
-    url('background.jpg');
-
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:url('background.jpg') center center/cover no-repeat;
+overflow:hidden;
 }
 
-h1{
-    font-size:4rem;
-    font-weight:900;
-    letter-spacing:3px;
-
-    background:linear-gradient(
-        #ffb3b3,
-        #ff4d4d,
-        #ff0000,
-        #990000
-    );
-
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-
-    text-shadow:
-        0 0 15px rgba(255,0,0,.9),
-        0 0 30px rgba(255,0,0,.7),
-        0 0 50px rgba(255,0,0,.5);
+body::before{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.75);
+backdrop-filter:blur(3px);
 }
 
-p{
-    color:#d9d9d9;
-    margin-top:10px;
+.login-box{
+position:relative;
+width:420px;
+max-width:90%;
+padding:40px;
+border-radius:25px;
+background:rgba(0,0,0,.45);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,.1);
+box-shadow:
+0 0 30px rgba(255,255,255,.08),
+0 0 80px rgba(255,255,255,.05);
+z-index:1;
+}
+
+.logo{
+text-align:center;
+font-size:50px;
+font-weight:bold;
+color:white;
+letter-spacing:5px;
+text-shadow:0 0 20px rgba(255,255,255,.4);
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+color:#999;
+letter-spacing:3px;
+margin-bottom:25px;
+}
+
+.quote{
+text-align:center;
+color:#888;
+font-style:italic;
+margin-bottom:25px;
+}
+
+input{
+width:100%;
+padding:15px;
+margin-bottom:15px;
+border:none;
+outline:none;
+border-radius:12px;
+background:rgba(255,255,255,.08);
+color:white;
+font-size:16px;
+}
+
+input::placeholder{
+color:#888;
+}
+
+.login-btn{
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+background:white;
+color:black;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+.login-btn:hover{
+transform:scale(1.02);
+}
+
+.line{
+margin:25px auto;
+width:60%;
+height:1px;
+background:rgba(255,255,255,.2);
+}
+
+.need{
+text-align:center;
+color:#bbb;
+margin-bottom:15px;
+}
+
+.btn{
+display:block;
+text-decoration:none;
+text-align:center;
+padding:14px;
+border-radius:12px;
+font-weight:bold;
+margin-bottom:12px;
+color:white;
+}
+
+.wa{
+background:#25D366;
+}
+
+.tg{
+background:#229ED9;
+}
+
+.footer{
+text-align:center;
+margin-top:20px;
+color:#666;
+font-size:13px;
 }
 </style>
 </head>
-
 <body>
-<div>
-    <h1>𝚟𝚊𝚗𝚘 𝚌𝚘𝚖𝚖𝚞𝚗𝚒𝚝𝚢</h1>
-    <p>Добро пожаловать на мой сайт сообщества!</p>
+
+<div class="login-box">
+
+<div class="logo">WEB BANNED</div>
+
+<div class="subtitle">
+DEVELOPER VANO
 </div>
+
+<div class="quote">
+"Входим только при наличии ключа."
+</div>
+
+<input type="text" id="username" placeholder="Username">
+
+<input type="password" id="password" placeholder="Password">
+
+<button class="login-btn" onclick="login()">
+LOGIN
+</button>
+
+<div class="line"></div>
+
+<div class="need">
+Need Access?
+</div>
+
+<a href="https://wa.me/628212165939"
+target="_blank"
+class="btn wa">
+Buy Access via WhatsApp
+</a>
+
+<a href="https://t.me/xpresspl"
+target="_blank"
+class="btn tg">
+Buy Access via Telegram
+</a>
+
+<div class="footer">
+© 2018 - 2026 BY VANO COMMUNITY
+</div>
+
+</div>
+
+<script>
+function login(){
+
+const username =
+document.getElementById("username").value;
+
+const password =
+document.getElementById("password").value;
+
+if(username === "admin" && password === "vano123"){
+
+localStorage.setItem("access","true");
+
+window.location.href = "dashboard.html";
+
+}else{
+
+alert("Username atau Password Salah!");
+
+}
+
+}
+</script>
+
 </body>
 </html>
