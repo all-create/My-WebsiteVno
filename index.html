@@ -3,22 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WEB BANNED BY VANO COMMUNITY</title>
+<title>WEB BANNED</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Georgia,serif;
+font-family:'Segoe UI',sans-serif;
 }
 
 body{
-height:100vh;
+min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:url('background.jpg') center center/cover no-repeat;
+background:url("background.jpg") center center/cover no-repeat fixed;
+padding:20px;
+position:relative;
 overflow:hidden;
 }
 
@@ -26,200 +31,278 @@ body::before{
 content:"";
 position:absolute;
 inset:0;
-background:rgba(0,0,0,.75);
+background:rgba(0,0,0,.60);
 backdrop-filter:blur(3px);
 }
 
 .login-box{
 position:relative;
-width:420px;
-max-width:90%;
-padding:40px;
+z-index:2;
+width:100%;
+max-width:430px;
+padding:35px;
 border-radius:25px;
-background:rgba(0,0,0,.45);
+background:rgba(0,0,0,.55);
 backdrop-filter:blur(15px);
-border:1px solid rgba(255,255,255,.1);
+border:1px solid rgba(255,255,255,.15);
 box-shadow:
-0 0 30px rgba(255,255,255,.08),
-0 0 80px rgba(255,255,255,.05);
-z-index:1;
+0 0 30px rgba(255,255,255,.08);
 }
 
 .logo{
+font-size:38px;
+font-weight:900;
 text-align:center;
-font-size:50px;
-font-weight:bold;
-color:white;
-letter-spacing:5px;
-text-shadow:0 0 20px rgba(255,255,255,.4);
-margin-bottom:10px;
+letter-spacing:3px;
+color:#ffffff;
+text-shadow:
+0 0 10px rgba(255,255,255,.8),
+0 0 20px rgba(255,255,255,.4);
+margin-bottom:8px;
 }
 
 .subtitle{
 text-align:center;
-color:#999;
-letter-spacing:3px;
+color:#d1d5db;
 margin-bottom:25px;
-}
-
-.quote{
-text-align:center;
-color:#888;
-font-style:italic;
-margin-bottom:25px;
+font-size:14px;
+letter-spacing:2px;
 }
 
 input{
 width:100%;
 padding:15px;
-margin-bottom:15px;
-border:none;
-outline:none;
+margin-bottom:12px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.15);
 border-radius:12px;
-background:rgba(255,255,255,.08);
 color:white;
-font-size:16px;
-}
-
-input::placeholder{
-color:#888;
-}
-
-.login-btn{
-width:100%;
-padding:15px;
-border:none;
-border-radius:12px;
-background:white;
-color:black;
-font-size:18px;
-font-weight:bold;
-cursor:pointer;
+font-size:15px;
+outline:none;
 transition:.3s;
 }
 
-.login-btn:hover{
-transform:scale(1.02);
+input::placeholder{
+color:#bdbdbd;
 }
 
-.line{
-margin:25px auto;
-width:60%;
-height:1px;
-background:rgba(255,255,255,.2);
+input:focus{
+border-color:white;
+box-shadow:0 0 15px rgba(255,255,255,.2);
 }
 
-.need{
+button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:12px;
+font-weight:700;
+cursor:pointer;
+margin-top:10px;
+transition:.3s;
+font-size:16px;
+}
+
+button:hover{
+transform:translateY(-2px);
+}
+
+.login-btn{
+background:linear-gradient(90deg,#ffffff,#d4d4d4);
+color:black;
+}
+
+#msg{
+margin-top:15px;
 text-align:center;
-color:#bbb;
-margin-bottom:15px;
+color:white;
+font-size:14px;
 }
 
-.btn{
+.buy-access{
+margin-top:25px;
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.buy-title{
+text-align:center;
+font-weight:800;
+letter-spacing:2px;
+color:white;
+text-shadow:0 0 10px rgba(255,255,255,.5);
+}
+
+.buy-btn{
 display:block;
 text-decoration:none;
 text-align:center;
 padding:14px;
 border-radius:12px;
-font-weight:bold;
-margin-bottom:12px;
+font-weight:700;
+transition:.3s;
 color:white;
 }
 
-.wa{
-background:#25D366;
+.buy-btn:hover{
+transform:translateY(-2px);
 }
 
-.tg{
+.whatsapp-btn{
+background:#25D366;
+border:1px solid #25D366;
+}
+
+.whatsapp-btn:hover{
+box-shadow:0 0 20px rgba(37,211,102,.45);
+}
+
+.telegram-btn{
 background:#229ED9;
+border:1px solid #229ED9;
+}
+
+.telegram-btn:hover{
+box-shadow:0 0 20px rgba(34,158,217,.45);
 }
 
 .footer{
-text-align:center;
 margin-top:20px;
-color:#666;
-font-size:13px;
+text-align:center;
+font-size:12px;
+color:#c0c0c0;
 }
+
 </style>
 </head>
 <body>
 
 <div class="login-box">
 
-<div class="logo">WEB BANNED</div>
+<div class="logo">𝖂𝕰𝕭 𝕭𝕬𝕹𝕯</div>
 
 <div class="subtitle">
-DEVELOPER VANO
+разрушитель высокомерия
 </div>
 
-<div class="quote">
-"Входим только при наличии ключа."
-</div>
+<input
+type="email"
+id="email"
+placeholder="Email">
 
-<input type="email" id="email" placeholder="Email">
+<input
+type="password"
+id="password"
+placeholder="Password">
 
-<input type="password" id="password" placeholder="Password">
-
-<button class="login-btn" onclick="login()">
+<button
+class="login-btn"
+onclick="login()">
 LOGIN
 </button>
 
-<div class="line"></div>
+<div id="msg"></div>
 
-<div class="need">
-Need Access?
+<div class="buy-access">
+
+<div class="buy-title">
+BUY ACCESS
 </div>
 
-<a href="https://wa.me/628212165939" target="_blank" class="btn wa">
-Buy Access via WhatsApp
+<a
+class="buy-btn whatsapp-btn"
+href="https://wa.me/628212165939?text=buy+access+bang"
+target="_blank">
+BUY ACCESS VIA WHATSAPP
 </a>
 
-<a href="https://t.me/xpresspl" target="_blank" class="btn tg">
-Buy Access via Telegram
+<a
+class="buy-btn whatsapp-btn"
+href="https://wa.me/628132086884?text=buy+access+bang"
+target="_blank">
+BUY ACCESS VIA WHATSAPP
 </a>
+
+<a
+class="buy-btn telegram-btn"
+href="https://t.me/xpresspl"
+target="_blank">
+BUY ACCESS VIA TELEGRAM
+</a>
+
+</div>
 
 <div class="footer">
-© 2018 - 2026 BY VANO COMMUNITY
+© 2018 - 2026 FROM VANO COMMUNITY
 </div>
 
 </div>
 
-<script type="module">
+<script>
 
-import { createClient }
-from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+const supabase = window.supabase.createClient(
+'https://zqqndwdmvhiwpflhpcab.supabase.co',
+'sb_publishable_7uGpjDAnlCcqI3VD0QhEDg_y4caw2Bk'
+);
 
-const SUPABASE_URL =
-'https://arndjryrdhwmwqgorvem.supabase.co';
+const msg = document.getElementById('msg');
 
-const SUPABASE_KEY =
-'sb_publishable_ga4tcgJm8b__-NByvucT1Q_BqkxM_T-';
-
-const supabase =
-createClient(SUPABASE_URL, SUPABASE_KEY);
-
-window.login = async function(){
+async function login(){
 
 const email =
-document.getElementById('email').value;
+document.getElementById('email').value.trim();
 
 const password =
-document.getElementById('password').value;
+document.getElementById('password').value.trim();
+
+if(!email || !password){
+
+msg.innerHTML =
+"Masukkan email dan password";
+
+return;
+
+}
 
 const { error } =
 await supabase.auth.signInWithPassword({
+
 email,
 password
+
 });
 
 if(error){
-alert('Email atau Password Salah!');
-return;
+
+msg.innerHTML =
+"Email atau password salah";
+
+}else{
+
+window.location.href =
+"dashboard.html";
+
 }
 
-window.location.href='dashboard.html';
+}
+
+(async()=>{
+
+const {
+data:{session}
+}
+=
+await supabase.auth.getSession();
+
+if(session){
+
+window.location.href =
+"dashboard.html";
 
 }
+
+})();
 
 </script>
 
