@@ -156,7 +156,7 @@ DEVELOPER VANO
 "Входим только при наличии ключа."
 </div>
 
-<input type="text" id="username" placeholder="Username">
+<input type="email" id="email" placeholder="Email">
 
 <input type="password" id="password" placeholder="Password">
 
@@ -170,15 +170,11 @@ LOGIN
 Need Access?
 </div>
 
-<a href="https://wa.me/628212165939"
-target="_blank"
-class="btn wa">
+<a href="https://wa.me/628212165939" target="_blank" class="btn wa">
 Buy Access via WhatsApp
 </a>
 
-<a href="https://t.me/xpresspl"
-target="_blank"
-class="btn tg">
+<a href="https://t.me/xpresspl" target="_blank" class="btn tg">
 Buy Access via Telegram
 </a>
 
@@ -188,28 +184,43 @@ Buy Access via Telegram
 
 </div>
 
-<script>
-function login(){
+<script type="module">
 
-const username =
-document.getElementById("username").value;
+import { createClient }
+from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+const SUPABASE_URL =
+'https://arndjryrdhwmwqgorvem.supabase.co';
+
+const SUPABASE_KEY =
+'sb_publishable_ga4tcgJm8b__-NByvucT1Q_BqkxM_T-';
+
+const supabase =
+createClient(SUPABASE_URL, SUPABASE_KEY);
+
+window.login = async function(){
+
+const email =
+document.getElementById('email').value;
 
 const password =
-document.getElementById("password").value;
+document.getElementById('password').value;
 
-if(username === "admin" && password === "vano123"){
+const { error } =
+await supabase.auth.signInWithPassword({
+email,
+password
+});
 
-localStorage.setItem("access","true");
+if(error){
+alert('Email atau Password Salah!');
+return;
+}
 
-window.location.href = "dashboard.html";
-
-}else{
-
-alert("Username atau Password Salah!");
+window.location.href='dashboard.html';
 
 }
 
-}
 </script>
 
 </body>
