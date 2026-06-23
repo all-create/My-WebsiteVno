@@ -34,19 +34,14 @@ justify-content:space-between;
 align-items:center;
 padding:20px;
 background:rgba(0,0,0,.45);
-border-bottom:1px solid rgba(255,255,255,.08);
 backdrop-filter:blur(15px);
+border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .logo{
 font-size:26px;
 font-weight:bold;
 letter-spacing:3px;
-}
-
-.status{
-color:#aaa;
-font-size:14px;
 }
 
 .container{
@@ -65,12 +60,12 @@ margin-bottom:25px;
 }
 
 .welcome h1{
-font-size:35px;
 margin-bottom:10px;
 }
 
-.welcome p{
+.user-email{
 color:#aaa;
+margin-top:10px;
 }
 
 .grid{
@@ -88,70 +83,9 @@ border-radius:18px;
 backdrop-filter:blur(15px);
 }
 
-.card h3{
-margin-bottom:10px;
-}
-
 .card p{
 color:#aaa;
-}
-
-.download-title{
-text-align:center;
-font-size:30px;
-margin-top:30px;
-margin-bottom:20px;
-}
-
-.menu-method{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:15px;
-margin-bottom:30px;
-}
-
-.method-btn{
-padding:15px;
-border:none;
-border-radius:14px;
-background:white;
-color:black;
-font-weight:bold;
-cursor:pointer;
-}
-
-.download-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:20px;
-}
-
-.download-card{
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
-padding:25px;
-border-radius:18px;
-backdrop-filter:blur(15px);
-text-align:center;
-}
-
-.download-card h3{
-margin-bottom:10px;
-}
-
-.download-card p{
-color:#aaa;
-margin-bottom:15px;
-}
-
-.download-btn{
-display:block;
-text-decoration:none;
-padding:14px;
-border-radius:12px;
-background:white;
-color:black;
-font-weight:bold;
+margin-top:10px;
 }
 
 .menu{
@@ -181,6 +115,8 @@ background:#25D366;
 
 .logout{
 background:#8B0000;
+cursor:pointer;
+border:none;
 }
 
 .footer{
@@ -190,167 +126,38 @@ color:#666;
 font-size:13px;
 }
 
-/* POPUP */
-
-.popup{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.85);
-justify-content:center;
-align-items:center;
-z-index:9999;
-padding:20px;
-}
-
-.popup-content{
-width:100%;
-max-width:600px;
-background:#1b1b1b;
-padding:25px;
-border-radius:20px;
-border:1px solid rgba(255,255,255,.1);
-position:relative;
-}
-
-.close-btn{
-position:absolute;
-top:10px;
-right:15px;
-font-size:24px;
-cursor:pointer;
-}
-
-.popup-content h3{
-margin-bottom:15px;
-}
-
-.popup-content p{
-color:#aaa;
-line-height:1.7;
-}
-
 </style>
 </head>
 <body>
 
 <div class="overlay"></div>
 
-<script>
-if(localStorage.getItem("access") !== "true"){
-window.location.href="index.html";
-}
-</script>
-
 <div class="header">
 <div class="logo">WEB BANNED</div>
-<div class="status">Премиум доступ</div>
+<div>SUPABASE AUTH</div>
 </div>
 
 <div class="container">
 
 <div class="welcome">
-<h1>ДОБРО ПОЖАЛОВАТЬ НА WEB BANNED</h1>
+<h1>WELCOME TO WEB BANNED</h1>
 <p>MY CREATOR IS PART OF COMMUNITY 577 CYBER DIVISION</p>
+
+<div id="userEmail" class="user-email">
+Loading...
+</div>
 </div>
 
 <div class="grid">
 
 <div class="card">
-<h3>ANNOUNCEMENT</h3>
-<p>don't misuse it just for personal interests</p>
+<h3>📢 ANNOUNCEMENT</h3>
+<p>Don't misuse access for harmful purposes.</p>
 </div>
 
 <div class="card">
-<h3>COMMUNITY</h3>
-<p>577 DEVISI CYBER</p>
-</div>
-
-</div>
-
-<h2 class="download-title">Method Banned Text</h2>
-
-<div class="menu-method">
-
-<button onclick="showText('t1')" class="method-btn">
-MT_NEW_OKEP
-</button>
-
-<button onclick="showText('t2')" class="method-btn">
-MT_ONE_RAP
-</button>
-
-<button onclick="showText('t3')" class="method-btn">
-MT_ONE_RAP2
-</button>
-
-<button onclick="showText('t4')" class="method-btn">
-MT_GMAIL
-</button>
-
-<button onclick="showText('t5')" class="method-btn">
-MT_SLOT
-</button>
-
-</div>
-
-<h2 class="download-title">
-запрещенный метод через видео
-</h2>
-
-<div class="download-grid">
-
-<div class="download-card">
-<h3>MT VID GALAU</h3>
-<p>Metode Bisa PM / PV</p>
-<a href="https://www.mediafire.com/file/elkvf7nedhtrmyh/VID-20260605-WA0036.mp4/file"
-target="_blank"
-class="download-btn">
-DOWNLOAD
-</a>
-</div>
-
-<div class="download-card">
-<h3>MT VID TOBRUT</h3>
-<p>Metode Bisa PM / PV</p>
-<a href="LINK_MEDIAFIRE_2"
-target="_blank"
-class="download-btn">
-DOWNLOAD
-</a>
-</div>
-
-<div class="download-card">
-<h3>MT VID ANIME</h3>
-<p>Metode Bisa PM / PV</p>
-<a href="LINK_MEDIAFIRE_3"
-target="_blank"
-class="download-btn">
-DOWNLOAD
-</a>
-</div>
-
-<div class="download-card">
-<h3>WHATSAPP FC</h3>
-<p>Metode Bisa PM / PV</p>
-<a href="LINK_MEDIAFIRE_4"
-target="_blank"
-class="download-btn">
-DOWNLOAD
-</a>
-</div>
-
-<div class="download-card">
-<h3>APK CEK BAND</h3>
-<p>проверка</p>
-<a href="LINK_MEDIAFIRE_5"
-target="_blank"
-class="download-btn">
-DOWNLOAD
-</a>
+<h3>🌐 COMMUNITY</h3>
+<p>577 CYBER DIVISION</p>
 </div>
 
 </div>
@@ -369,11 +176,10 @@ class="btn whatsapp">
 WHATSAPP
 </a>
 
-<a href="#"
-onclick="logout()"
+<button onclick="logout()"
 class="btn logout">
 LOGOUT
-</a>
+</button>
 
 </div>
 
@@ -383,79 +189,44 @@ LOGOUT
 © 2018 - 2026 BY VANO COMMUNITY
 </div>
 
-<div id="popup" class="popup">
+<script type="module">
 
-<div class="popup-content">
+import { createClient }
+from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
-<span class="close-btn" onclick="closePopup()">
-✕
-</span>
+const SUPABASE_URL =
+'https://arndjryrdhwmwqgorvem.supabase.co';
 
-<h3 id="popupTitle"></h3>
+const SUPABASE_KEY =
+'sb_publishable_ga4tcgJm8b__-NByvucT1Q_BqkxM_T-';
 
-<p id="popupText"></p>
+const supabase =
+createClient(SUPABASE_URL, SUPABASE_KEY);
 
-</div>
+const {
+data:{session}
+} = await supabase.auth.getSession();
 
-</div>
-
-<script>
-
-const methods = {
-
-t1:{
-title:"MT_NEW_OKEP",
-text:"METHOD 1 SILAHKAN AMBIL DI https://t.me/methodeebanned"
-},
-
-t2:{
-title:"MT_ONE_RAP",
-text:"METHOD 2 SILAHKAN AMBIL DI https://t.me/methodeebanned"
-},
-
-t3:{
-title:"MT_ONE_RAP2",
-text:"METHOD 3 SILAHKAN AMBIL DI https://t.me/methodeebanned"
-},
-
-t4:{
-title:"MT_GMAIL",
-text:"METHOD 4 SILAHKAN AMBIL DI https://t.me/methodeebanned"
-},
-
-t5:{
-title:"MT_SLOT",
-text:"METHOD 5 SILAHKAN AMBIL DI https://t.me/methodeebanned"
+if(!session){
+window.location.href = "index.html";
 }
 
-};
+const {
+data:{user}
+} = await supabase.auth.getUser();
 
-function showText(id){
+document.getElementById("userEmail").innerText =
+"Logged in as: " + user.email;
 
-document.getElementById("popupTitle").innerText =
-methods[id].title;
+window.logout = async function(){
 
-document.getElementById("popupText").innerText =
-methods[id].text;
+await supabase.auth.signOut();
 
-document.getElementById("popup").style.display =
-"flex";
+window.location.href = "index.html";
 
-}
-
-function closePopup(){
-
-document.getElementById("popup").style.display =
-"none";
-
-}
-
-function logout(){
-localStorage.removeItem("access");
-window.location.href="index.html";
 }
 
 </script>
 
 </body>
-  </html>
+</html>
