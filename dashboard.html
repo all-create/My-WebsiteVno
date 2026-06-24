@@ -310,16 +310,18 @@ const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 // SESSION CHECK (FIXED FOR VERCEL)
 window.addEventListener("load", async () => {
 
-const { data: { session } } = await supabase.auth.getSession();
+const { data, error } = await supabase.auth.getSession();
 
-if(!session){
-setTimeout(()=>{
-window.location.href = "index.html";
-},800);
-return;
+if (error) {
+    console.log(error);
 }
 
-document.getElementById("userEmail").innerText = session.user.email;
+if (!data.session) {
+    window.location.replace("index.html");
+    return;
+}
+
+document.getElementById("userEmail").innerText = data.session.user.email;
 
 });
 
